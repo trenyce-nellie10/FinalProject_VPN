@@ -50,9 +50,6 @@
     <ClInclude Include="Enrollment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enrolment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FacultyForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
