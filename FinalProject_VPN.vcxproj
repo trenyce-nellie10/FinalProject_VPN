@@ -126,6 +126,8 @@
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MDIParent.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="MyForm1.cpp" />
+    <ClCompile Include="MyForm2.cpp" />
     <ClCompile Include="Role.cpp" />
     <ClCompile Include="StudentForm.cpp" />
     <ClCompile Include="User.cpp" />
@@ -136,7 +138,10 @@
     <ClInclude Include="Enrollment.h" />
     <ClInclude Include="FacultyForm.h" />
     <ClInclude Include="MDIParent.h" />
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="Sign Up.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Role.h" />
@@ -147,8 +152,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
