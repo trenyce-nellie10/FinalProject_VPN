@@ -122,7 +122,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ChildForm.cpp" />
     <ClCompile Include="FacultyForm.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MDIParent.cpp" />
@@ -133,7 +132,6 @@
     <ClCompile Include="VPN_International.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ChildForm.cpp.h" />
     <ClInclude Include="Course.h" />
     <ClInclude Include="Enrollment.h" />
     <ClInclude Include="Enrolment.h" />
