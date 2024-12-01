@@ -134,7 +134,6 @@
   <ItemGroup>
     <ClInclude Include="Course.h" />
     <ClInclude Include="Enrollment.h" />
-    <ClInclude Include="Enrolment.h" />
     <ClInclude Include="FacultyForm.h" />
     <ClInclude Include="MDIParent.h" />
     <ClInclude Include="MyForm.h">
