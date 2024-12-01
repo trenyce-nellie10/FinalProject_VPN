@@ -39,18 +39,21 @@
     <ClCompile Include="MDIParent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyForm1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="Sign Up.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VPN_International.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Enrollment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enrolment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FacultyForm.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Course.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
