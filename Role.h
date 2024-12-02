@@ -1,7 +1,6 @@
 #pragma once
-#pragma once
 
-namespace UniversityRecords {
+namespace FinalProjectVPN {
 
     using namespace System;
     using namespace System::Collections::Generic;

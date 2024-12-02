@@ -22,7 +22,7 @@ void FacultyForm::InitializeComponent() {
 void FacultyForm::FacultyForm_Load(Object^ sender, EventArgs^ e) {
     // Load enrollments for verification
     MySqlConnection^ sqlConn = gcnew MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=university");
-    MySqlCommand^ sqlCmd = gcnew MySqlCommand("SELECT * FROM enrollments WHERE verified = 0", sqlConn);
+    MySqlCommand^ sqlCmd = gcnew MySqlCommand("SELECT * FROM enrollment WHERE verified = 0", sqlConn);
     MySqlDataAdapter^ sqlDtA = gcnew MySqlDataAdapter(sqlCmd);
     DataTable^ sqlDt = gcnew DataTable();
     sqlDtA->Fill(sqlDt);

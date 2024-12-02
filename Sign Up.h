@@ -37,19 +37,23 @@ namespace FinalProjectVPN {
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ first_name;
-	private: System::Windows::Forms::TextBox^ username;
+	private: System::Windows::Forms::TextBox^ firstName;
+	private: System::Windows::Forms::TextBox^ email;
 
 
-	private: System::Windows::Forms::TextBox^ last_name;
+	private: System::Windows::Forms::TextBox^ lastName;
+
+
+
 
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ password1;
+	private: System::Windows::Forms::TextBox^ password;
+
 
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ password2;
 
-	private: System::Windows::Forms::Label^ label5;
+
+
 
 
 	private: System::Windows::Forms::Button^ button1;
@@ -71,14 +75,12 @@ namespace FinalProjectVPN {
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->first_name = (gcnew System::Windows::Forms::TextBox());
-			this->username = (gcnew System::Windows::Forms::TextBox());
-			this->last_name = (gcnew System::Windows::Forms::TextBox());
+			this->firstName = (gcnew System::Windows::Forms::TextBox());
+			this->email = (gcnew System::Windows::Forms::TextBox());
+			this->lastName = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->password1 = (gcnew System::Windows::Forms::TextBox());
+			this->password = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->password2 = (gcnew System::Windows::Forms::TextBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
@@ -87,7 +89,7 @@ namespace FinalProjectVPN {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(275, 93);
+			this->label1->Location = System::Drawing::Point(274, 146);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(84, 20);
 			this->label1->TabIndex = 0;
@@ -97,77 +99,61 @@ namespace FinalProjectVPN {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(275, 165);
+			this->label2->Location = System::Drawing::Point(274, 218);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(83, 20);
+			this->label2->Size = System::Drawing::Size(46, 20);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Username";
+			this->label2->Text = L"email";
 			// 
-			// first_name
+			// firstName
 			// 
-			this->first_name->Location = System::Drawing::Point(360, 87);
-			this->first_name->Name = L"first_name";
-			this->first_name->Size = System::Drawing::Size(142, 26);
-			this->first_name->TabIndex = 2;
+			this->firstName->Location = System::Drawing::Point(359, 140);
+			this->firstName->Name = L"firstName";
+			this->firstName->Size = System::Drawing::Size(142, 26);
+			this->firstName->TabIndex = 2;
 			// 
-			// username
+			// email
 			// 
-			this->username->Location = System::Drawing::Point(360, 159);
-			this->username->Name = L"username";
-			this->username->Size = System::Drawing::Size(365, 26);
-			this->username->TabIndex = 3;
+			this->email->Location = System::Drawing::Point(359, 212);
+			this->email->Name = L"email";
+			this->email->Size = System::Drawing::Size(365, 26);
+			this->email->TabIndex = 3;
 			// 
-			// last_name
+			// lastName
 			// 
-			this->last_name->Location = System::Drawing::Point(638, 87);
-			this->last_name->Name = L"last_name";
-			this->last_name->Size = System::Drawing::Size(142, 26);
-			this->last_name->TabIndex = 5;
+			this->lastName->Location = System::Drawing::Point(637, 140);
+			this->lastName->Name = L"lastName";
+			this->lastName->Size = System::Drawing::Size(142, 26);
+			this->lastName->TabIndex = 5;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(553, 93);
+			this->label3->Location = System::Drawing::Point(552, 146);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(84, 20);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Last name";
 			// 
-			// password1
+			// password
 			// 
-			this->password1->Location = System::Drawing::Point(360, 226);
-			this->password1->Name = L"password1";
-			this->password1->Size = System::Drawing::Size(365, 26);
-			this->password1->TabIndex = 7;
+			this->password->Location = System::Drawing::Point(359, 279);
+			this->password->Name = L"password";
+			this->password->Size = System::Drawing::Size(365, 26);
+			this->password->TabIndex = 7;
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(276, 232);
+			this->label4->Location = System::Drawing::Point(275, 285);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(78, 20);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Password";
 			// 
-			// password2
-			// 
-			this->password2->Location = System::Drawing::Point(360, 286);
-			this->password2->Name = L"password2";
-			this->password2->Size = System::Drawing::Size(365, 26);
-			this->password2->TabIndex = 9;
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(220, 289);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(133, 20);
-			this->label5->TabIndex = 8;
-			this->label5->Text = L"confirm password";
-			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(500, 370);
+			this->button1->Location = System::Drawing::Point(500, 348);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 34);
 			this->button1->TabIndex = 12;
@@ -177,7 +163,7 @@ namespace FinalProjectVPN {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(412, 49);
+			this->label7->Location = System::Drawing::Point(411, 102);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(192, 20);
 			this->label7->TabIndex = 13;
@@ -187,7 +173,7 @@ namespace FinalProjectVPN {
 			// linkLabel1
 			// 
 			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->Location = System::Drawing::Point(610, 49);
+			this->linkLabel1->Location = System::Drawing::Point(609, 102);
 			this->linkLabel1->Name = L"linkLabel1";
 			this->linkLabel1->Size = System::Drawing::Size(48, 20);
 			this->linkLabel1->TabIndex = 14;
@@ -203,14 +189,12 @@ namespace FinalProjectVPN {
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->password2);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->password1);
+			this->Controls->Add(this->password);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->last_name);
+			this->Controls->Add(this->lastName);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->username);
-			this->Controls->Add(this->first_name);
+			this->Controls->Add(this->email);
+			this->Controls->Add(this->firstName);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"MyForm";
