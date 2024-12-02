@@ -115,6 +115,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\Downloads\mysql-for-visualstudio-2.0.5-noinstall\v461\mysql.data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -122,21 +125,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FacultyForm.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MDIParent.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="MyForm1.cpp" />
     <ClCompile Include="MyForm2.cpp" />
     <ClCompile Include="Role.cpp" />
+    <ClCompile Include="Sign Up.cpp" />
     <ClCompile Include="StudentForm.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="VPN_International.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Course.h" />
-    <ClInclude Include="Enrollment.h" />
-    <ClInclude Include="FacultyForm.h" />
     <ClInclude Include="MDIParent.h" />
     <ClInclude Include="Sign Up.h">
       <FileType>CppForm</FileType>
@@ -144,9 +144,6 @@
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Role.h" />
-    <ClInclude Include="StudentForm.h" />
-    <ClInclude Include="User.h" />
     <ClInclude Include="VPN_International.h">
       <FileType>CppForm</FileType>
     </ClInclude>

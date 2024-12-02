@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace FinalProjectVPN {
 
 	using namespace System;
@@ -7,15 +8,22 @@ namespace FinalProjectVPN {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::MySqlClient;
+    
 	using namespace System::Drawing;
 
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class SignUp : public System::Windows::Forms::Form
 	{
+		MySqlConnection^ sqlConn = gcnew MySqlConnection();
+		MySqlCommand^ sqlCmd = gcnew MySqlCommand();
+		DataTable^ sqlDt = gcnew DataTable();
+		MySqlDataAdapter^ sqlDtA = gcnew MySqlDataAdapter();
 	public:
-		MyForm(void)
+		MySqlDataReader^ sqlRd;
+		SignUp(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +35,7 @@ namespace FinalProjectVPN {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~MyForm()
+		~SignUp()
 		{
 			if (components)
 			{
@@ -213,8 +221,8 @@ namespace FinalProjectVPN {
 			this->Controls->Add(this->first_name);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Name = L"SignUp";
+			this->Text = L"SignUp";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

@@ -30,9 +30,6 @@
     <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FacultyForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,6 +42,9 @@
     <ClCompile Include="MyForm2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sign Up.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sign Up.h">
@@ -53,25 +53,7 @@
     <ClInclude Include="VPN_International.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enrollment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FacultyForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MDIParent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Role.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StudentForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Course.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Login.h">
