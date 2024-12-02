@@ -57,7 +57,7 @@ namespace FinalProjectVPN {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -151,35 +151,50 @@ namespace FinalProjectVPN {
 		MySqlConnection^ conn = gcnew MySqlConnection(connString);
 		try {
 			conn->Open();
-			String^ email = email_txt->Text;
-			String^ password = password_txt->Text;
-			String^ query = "SELECT * FROM users WHERE email=@Email AND password=@Password";
+			String^ email = email_txt->Text->Trim();
+			String^ password = password_txt->Text->Trim();
+
+			// Query to validate login and get the role
+			String^ query = "SELECT role FROM users WHERE email=@Email AND password=@Password";
 			MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+
+			// Add parameters
 			cmd->Parameters->AddWithValue("@Email", email);
 			cmd->Parameters->AddWithValue("@Password", password);
+
+			// Execute the query
 			MySqlDataReader^ reader = cmd->ExecuteReader();
+
 			if (reader->Read()) {
+				// Fetch the role
+				String^ role = reader["role"]->ToString();
+
+				// Hide current form and show the dashboard
 				this->Hide();
-				Dashboard^ dashboard = gcnew Dashboard();
+				Dashboard^ dashboard = gcnew Dashboard(role);
 				dashboard->ShowDialog();
 				this->Show();
-			}
+			} 
 			else {
-				MessageBox::Show("Invalid email or password", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				// Display login failure message
+				MessageBox::Show("Invalid email or password. Please try again.", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
-			reader->Close();
+
+			reader->Close(); // Close the reader
+		}
+		catch (MySqlException^ dbEx) {
+			// Database-specific error handling
+			MessageBox::Show("Database connection error: " + dbEx->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		catch (Exception^ ex) {
-			MessageBox::Show(ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			// General error handling
+			MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		finally {
+			// Ensure the connection is closed
 			conn->Close();
 		}
-
-
-
 	}
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
+	}
 };
-}

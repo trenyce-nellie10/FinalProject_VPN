@@ -101,6 +101,7 @@ namespace FinalProjectVPN {
 			this->button1->TabIndex = 3;
 			this->button1->Text = L"Send";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &PayFees::button1_Click);
 			// 
 			// textBox1
 			// 
@@ -137,5 +138,7 @@ namespace FinalProjectVPN {
 #pragma endregion
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
