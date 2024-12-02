@@ -155,7 +155,7 @@ namespace FinalProjectVPN {
 			String^ password = password_txt->Text->Trim();
 
 			// Query to validate login and get the role
-			String^ query = "SELECT role FROM users WHERE email=@Email AND password=@Password";
+			String^ query = "SELECT roleID FROM users WHERE email=@Email AND password=@Password";
 			MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
 
 			// Add parameters
@@ -167,14 +167,14 @@ namespace FinalProjectVPN {
 
 			if (reader->Read()) {
 				// Fetch the role
-				String^ role = reader["role"]->ToString();
+				int roleID = (int)reader["roleID"];
 
 				// Hide current form and show the dashboard
 				this->Hide();
-				Dashboard^ dashboard = gcnew Dashboard(role);
+				Dashboard^ dashboard = gcnew Dashboard(roleID);
 				dashboard->ShowDialog();
 				this->Show();
-			} 
+			}
 			else {
 				// Display login failure message
 				MessageBox::Show("Invalid email or password. Please try again.", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -196,5 +196,6 @@ namespace FinalProjectVPN {
 		}
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
-	}
-};
+	};
+}
+
