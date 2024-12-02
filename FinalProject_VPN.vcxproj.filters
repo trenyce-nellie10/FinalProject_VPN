@@ -30,6 +30,9 @@
     <ClCompile Include="ViewGrades.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PayFees.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sign Up.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ViewGrades.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PayFees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

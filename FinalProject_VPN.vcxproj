@@ -128,6 +128,7 @@
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="EnrollmentForm.cpp" />
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="PayFees.cpp" />
     <ClCompile Include="Sign Up.cpp" />
     <ClCompile Include="ViewGrades.cpp" />
   </ItemGroup>
@@ -136,6 +137,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EnrollmentForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PayFees.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Sign Up.h">
@@ -157,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayFees.resx">
+      <DependentUpon>PayFees.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sign Up.resx">
       <DependentUpon>Sign Up.h</DependentUpon>

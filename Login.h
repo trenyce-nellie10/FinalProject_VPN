@@ -107,6 +107,7 @@ namespace FinalProjectVPN {
 			this->password_txt->Name = L"password_txt";
 			this->password_txt->Size = System::Drawing::Size(326, 26);
 			this->password_txt->TabIndex = 3;
+			this->password_txt->UseSystemPasswordChar = true;
 			this->password_txt->TextChanged += gcnew System::EventHandler(this, &Login::textBox2_TextChanged);
 			// 
 			// login_button
