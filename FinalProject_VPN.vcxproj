@@ -81,7 +81,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <SubSystem>Windows (/SUBSYSTEM: WINDOWS)</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -128,9 +128,6 @@
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Sign Up.cpp" />
-    <ClCompile Include="StudentForm.cpp" />
-    <ClCompile Include="User.cpp" />
-    <ClCompile Include="VPN_International.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dashboard.h">
@@ -140,9 +137,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Login.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="VPN_International.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,5 @@
 #pragma once
+#include "Dashboard.h"
 
 namespace FinalProjectVPN {
 
@@ -8,14 +9,16 @@ namespace FinalProjectVPN {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
-	/// Summary for MyForm2
+	/// Summary for Login
 	/// </summary>
-	public ref class MyForm2 : public System::Windows::Forms::Form
+	public ref class Login : public System::Windows::Forms::Form
 	{
+
 	public:
-		MyForm2(void)
+		Login(void)
 		{
 			InitializeComponent();
 			//
@@ -27,19 +30,27 @@ namespace FinalProjectVPN {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~MyForm2()
+		~Login()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ email;
+	protected:
+
+	protected:
+
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::TextBox^ email_txt;
+	private: System::Windows::Forms::TextBox^ password_txt;
+	private: System::Windows::Forms::Button^ cancel_button;
+
+
+
+	private: System::Windows::Forms::Button^ login_button;
+
 	protected:
 
 	private:
@@ -55,23 +66,23 @@ namespace FinalProjectVPN {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->email = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->email_txt = (gcnew System::Windows::Forms::TextBox());
+			this->password_txt = (gcnew System::Windows::Forms::TextBox());
+			this->cancel_button = (gcnew System::Windows::Forms::Button());
+			this->login_button = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// label1
+			// email
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(219, 111);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(83, 20);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Username";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm2::label1_Click);
+			this->email->AutoSize = true;
+			this->email->Location = System::Drawing::Point(219, 111);
+			this->email->Name = L"email";
+			this->email->Size = System::Drawing::Size(48, 20);
+			this->email->TabIndex = 0;
+			this->email->Text = L"Email";
+			this->email->Click += gcnew System::EventHandler(this, &Login::label1_Click);
 			// 
 			// label2
 			// 
@@ -81,67 +92,105 @@ namespace FinalProjectVPN {
 			this->label2->Size = System::Drawing::Size(78, 20);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Password";
-			this->label2->Click += gcnew System::EventHandler(this, &MyForm2::label2_Click);
+			this->label2->Click += gcnew System::EventHandler(this, &Login::label2_Click);
 			// 
-			// textBox1
+			// email_txt
 			// 
-			this->textBox1->Location = System::Drawing::Point(322, 105);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(326, 26);
-			this->textBox1->TabIndex = 2;
+			this->email_txt->Location = System::Drawing::Point(322, 105);
+			this->email_txt->Name = L"email_txt";
+			this->email_txt->Size = System::Drawing::Size(326, 26);
+			this->email_txt->TabIndex = 2;
+			this->email_txt->TextChanged += gcnew System::EventHandler(this, &Login::Login_Load);
 			// 
-			// textBox2
+			// password_txt
 			// 
-			this->textBox2->Location = System::Drawing::Point(322, 179);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(326, 26);
-			this->textBox2->TabIndex = 3;
+			this->password_txt->Location = System::Drawing::Point(322, 179);
+			this->password_txt->Name = L"password_txt";
+			this->password_txt->Size = System::Drawing::Size(326, 26);
+			this->password_txt->TabIndex = 3;
+			this->password_txt->TextChanged += gcnew System::EventHandler(this, &Login::textBox2_TextChanged);
 			// 
-			// button1
+			// cancel_button
 			// 
-			this->button1->BackColor = System::Drawing::Color::LightCoral;
-			this->button1->Location = System::Drawing::Point(227, 271);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(86, 31);
-			this->button1->TabIndex = 4;
-			this->button1->Text = L"Cancel";
-			this->button1->UseVisualStyleBackColor = false;
+			this->cancel_button->BackColor = System::Drawing::Color::LightCoral;
+			this->cancel_button->Location = System::Drawing::Point(227, 271);
+			this->cancel_button->Name = L"cancel_button";
+			this->cancel_button->Size = System::Drawing::Size(86, 31);
+			this->cancel_button->TabIndex = 4;
+			this->cancel_button->Text = L"Cancel";
+			this->cancel_button->UseVisualStyleBackColor = false;
 			// 
-			// button2
+			// login_button
 			// 
-			this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+			this->login_button->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->button2->Location = System::Drawing::Point(562, 271);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(86, 31);
-			this->button2->TabIndex = 5;
-			this->button2->Text = L"Login";
-			this->button2->UseVisualStyleBackColor = false;
+			this->login_button->Location = System::Drawing::Point(562, 271);
+			this->login_button->Name = L"login_button";
+			this->login_button->Size = System::Drawing::Size(86, 31);
+			this->login_button->TabIndex = 5;
+			this->login_button->Text = L"Login";
+			this->login_button->UseVisualStyleBackColor = false;
+			this->login_button->Click += gcnew System::EventHandler(this, &Login::button2_Click);
 			// 
 			// MyForm2
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(835, 389);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->login_button);
+			this->Controls->Add(this->cancel_button);
+			this->Controls->Add(this->password_txt);
+			this->Controls->Add(this->email_txt);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->email);
 			this->Name = L"MyForm2";
 			this->Text = L"Login";
-			this->Load += gcnew System::EventHandler(this, &MyForm2::MyForm2_Load);
+			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void MyForm2_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ connString = "Server=localhost;Database=university;Uid=root;Pwd="";";
+		MySqlConnection^ conn = gcnew MySqlConnection(connString);
+		try {
+			conn->Open();
+			String^ email = email_txt->Text;
+			String^ password = password_txt->Text;
+			String^ query = "SELECT * FROM users WHERE email=@Email AND password=@Password";
+			MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+			cmd->Parameters->AddWithValue("@Email", email);
+			cmd->Parameters->AddWithValue("@Password", password);
+			MySqlDataReader^ reader = cmd->ExecuteReader();
+			if (reader->Read()) {
+				this->Hide();
+				Dashboard^ dashboard = gcnew Dashboard();
+				dashboard->ShowDialog();
+				this->Show();
+			}
+			else {
+				MessageBox::Show("Invalid email or password", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			reader->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		finally {
+			conn->Close();
+		}
+
+
+
+	}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }
