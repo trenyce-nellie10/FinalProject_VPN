@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 namespace FinalProjectVPN {
 
 	using namespace System;
@@ -8,8 +9,7 @@ namespace FinalProjectVPN {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
-	using namespace System::Data::MySqlClient;
-    
+	using namespace MySql::Data::MySqlClient;    
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -100,7 +100,7 @@ namespace FinalProjectVPN {
 			this->label1->Size = System::Drawing::Size(84, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"First name";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
+			this->label1->Click += gcnew System::EventHandler(this, &SignUp::label1_Click);
 			// 
 			// label2
 			// 
@@ -181,6 +181,7 @@ namespace FinalProjectVPN {
 			this->button1->TabIndex = 12;
 			this->button1->Text = L"Sign up";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &SignUp::button1_Click);
 			// 
 			// label7
 			// 
@@ -190,7 +191,7 @@ namespace FinalProjectVPN {
 			this->label7->Size = System::Drawing::Size(192, 20);
 			this->label7->TabIndex = 13;
 			this->label7->Text = L"Already have an account\?";
-			this->label7->Click += gcnew System::EventHandler(this, &MyForm::label7_Click);
+			this->label7->Click += gcnew System::EventHandler(this, &SignUp::label7_Click);
 			// 
 			// linkLabel1
 			// 
@@ -201,9 +202,9 @@ namespace FinalProjectVPN {
 			this->linkLabel1->TabIndex = 14;
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"Login";
-			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MyForm::linkLabel1_LinkClicked);
+			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &SignUp::linkLabel1_LinkClicked);
 			// 
-			// MyForm
+			// SignUp
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -223,6 +224,7 @@ namespace FinalProjectVPN {
 			this->Controls->Add(this->label1);
 			this->Name = L"SignUp";
 			this->Text = L"SignUp";
+			this->Load += gcnew System::EventHandler(this, &SignUp::SignUp_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -233,6 +235,19 @@ namespace FinalProjectVPN {
 private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void SignUp_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	sqlConn->ConnectionString = "datasource = localhost; port=3306; username=root; password=; database=university";
+	sqlConn->Open();
+	sqlCmd->Connection = sqlConn;
+	sqlCmd->CommandText = "Select * from university";
+	sqlRd = sqlCmd->ExecuteReader();
+	sqlDt->Load(sqlRd);
+	sqlRd->Close();
+	sqlConn->Close();
+	dataGridView1->DataSource = sqlDt;
 }
 };
 }

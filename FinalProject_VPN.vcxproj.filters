@@ -45,6 +45,9 @@
     <ClCompile Include="Sign Up.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dashboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sign Up.h">
@@ -53,10 +56,10 @@
     <ClInclude Include="VPN_International.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MDIParent.h">
+    <ClInclude Include="Login.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Login.h">
+    <ClInclude Include="Dashboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
