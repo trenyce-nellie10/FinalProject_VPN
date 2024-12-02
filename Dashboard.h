@@ -49,15 +49,7 @@ namespace FinalProjectVPN {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		MenuStrip^ menuStrip;
-		ToolStrip^ toolStrip;
-		ToolStripMenuItem^ studentToolStripMenuItem;
-		ToolStripMenuItem^ facultyToolStripMenuItem;
 		System::ComponentModel::Container^ components;
-
-		void InitializeComponent(void);
-		void studentToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
-		void facultyToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
 
 
 #pragma region Windows Form Designer generated code
