@@ -39,17 +39,19 @@ namespace FinalProjectVPN {
 		ToolStrip^ toolStrip;
 		ToolStripMenuItem^ studentToolStripMenuItem;
 		ToolStripMenuItem^ facultyToolStripMenuItem;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+	protected:
 		System::ComponentModel::Container^ components;
 
 		void InitializeComponent(void);
-		void studentToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
-		void facultyToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
+		//void studentToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
+		//void facultyToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
 	
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+		
 
 
 #pragma region Windows Form Designer generated code

@@ -127,11 +127,6 @@
   <ItemGroup>
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="Login.cpp" />
-    <ClCompile Include="MDIParent.cpp" />
-    <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="MyForm1.cpp" />
-    <ClCompile Include="MyForm2.cpp" />
-    <ClCompile Include="Role.cpp" />
     <ClCompile Include="Sign Up.cpp" />
     <ClCompile Include="StudentForm.cpp" />
     <ClCompile Include="User.cpp" />
