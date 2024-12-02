@@ -1,6 +1,7 @@
 #pragma once
 #include "EnrollmentForm.h"
 #include "ViewGrades.h"
+#include "PayFees.h"
 
 namespace FinalProjectVPN {
 
@@ -283,6 +284,11 @@ private: System::Void viewGradesToolStripMenuItem_Click(System::Object^ sender, 
 	this->Show();
 }
 private: System::Void payFeesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	PayFees^ pay = gcnew PayFees();
+	pay->ShowDialog();
+	this->Show();
+}
 }
 };
 }
