@@ -171,10 +171,10 @@ namespace FinalProjectVPN {
 
 				// Hide current form and show the dashboard
 				this->Hide();
-				Dashboard^ dashboard = gcnew Dashboard(role);
+				Dashboard^ dashboard = gcnew Dashboard();
 				dashboard->ShowDialog();
 				this->Show();
-			} 
+			}
 			else {
 				// Display login failure message
 				MessageBox::Show("Invalid email or password. Please try again.", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -196,5 +196,6 @@ namespace FinalProjectVPN {
 		}
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
-	}
-};
+	};
+}
+

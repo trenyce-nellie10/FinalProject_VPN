@@ -24,7 +24,7 @@ namespace FinalProjectVPN {
 		{
 			// Add your database connection logic here
 			// Example:
-			String^ connectionString = "server=localhost;user id=root;password="";database=university;";
+			String^ connectionString = "server=localhost;user id=root;password=;database=university;";
 			MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 			try
 			{
@@ -39,7 +39,6 @@ namespace FinalProjectVPN {
 	public:
 		Dashboard(void)
 		{
-			this->userId = userId;
 			InitializeComponent();
 			ConnectToDatabase();
 			UpdateMenuBasedOnRole();
@@ -97,10 +96,6 @@ namespace FinalProjectVPN {
 	protected:
 		System::ComponentModel::Container^ components;
 
-
-		//void studentToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
-		//void facultyToolStripMenuItem_Click(Object^ sender, EventArgs^ e);
-
 	private:
 		String^ userId;
 		String^ userRole;
@@ -124,14 +119,7 @@ namespace FinalProjectVPN {
 				facultyToolStripMenuItem->Checked = false;
 				aDMINToolStripMenuItem->Checked = true;
 			}
-			else
-			{
-			}
-			/// <summary>
-			/// Required designer variable.
-			/// </summary>
-
-
+		}
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -236,7 +224,6 @@ namespace FinalProjectVPN {
 				this->enterGradesToolStripMenuItem->Text = L"Enter Grades";
 				// 
 				// viewClassRosterToolStripMenuItem
-				// 
 				this->viewClassRosterToolStripMenuItem->Name = L"viewClassRosterToolStripMenuItem";
 				this->viewClassRosterToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 				this->viewClassRosterToolStripMenuItem->Text = L"View Class Roster";
@@ -307,7 +294,6 @@ namespace FinalProjectVPN {
 				this->PerformLayout();
 
 			}
-		}
 #pragma endregion
 	private: System::Void aDMINToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -317,34 +303,34 @@ namespace FinalProjectVPN {
 	}
 	private: System::Void enrollToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
-		EnrollmentForm ^ enroll = gcnew EnrollmentForm();
+		EnrollmentForm^ enroll = gcnew EnrollmentForm();
 		enroll->ShowDialog();
 		this->Show();
 	}
-private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void manageCoursesToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void manageFinancialsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void viewGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	ViewGrades^ view = gcnew ViewGrades();
-	view->ShowDialog();
-	this->Show();
-}
-private: System::Void payFeesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	PayFees^ pay = gcnew PayFees();
-	pay->ShowDialog();
-	this->Show();
-}
-private: System::Void viewScheduleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	ViewSchedule^ view = gcnew ViewSchedule();
-	view->ShowDialog();
-	this->Show();
-}
+	private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void manageCoursesToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void manageFinancialsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void viewGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ViewGrades^ view = gcnew ViewGrades();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void payFeesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		PayFees^ pay = gcnew PayFees();
+		pay->ShowDialog();
+		this->Show();
+	}
+	private: System::Void viewScheduleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ViewSchedule^ view = gcnew ViewSchedule();
+		view->ShowDialog();
+		this->Show();
+	}
 private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
