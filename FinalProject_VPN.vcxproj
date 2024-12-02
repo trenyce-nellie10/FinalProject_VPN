@@ -129,9 +129,10 @@
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="EnrollmentForm.cpp" />
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="PayFees.cpp" />
     <ClCompile Include="Sign Up.cpp" />
     <ClCompile Include="ViewGrades.cpp" />
-    <ClCompile Include="viewRoster.cpp" />
+    <ClCompile Include="ViewSchedule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddGrades.h">
@@ -143,6 +144,9 @@
     <ClInclude Include="EnrollmentForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PayFees.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Sign Up.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -152,7 +156,7 @@
     <ClInclude Include="ViewGrades.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="viewRoster.h">
+    <ClInclude Include="ViewSchedule.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -169,14 +173,17 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PayFees.resx">
+      <DependentUpon>PayFees.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sign Up.resx">
       <DependentUpon>Sign Up.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewGrades.resx">
       <DependentUpon>ViewGrades.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="viewRoster.resx">
-      <DependentUpon>viewRoster.h</DependentUpon>
+    <EmbeddedResource Include="ViewSchedule.resx">
+      <DependentUpon>ViewSchedule.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

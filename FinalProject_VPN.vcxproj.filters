@@ -30,10 +30,10 @@
     <ClCompile Include="ViewGrades.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AddGrades.cpp">
+    <ClCompile Include="PayFees.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="viewRoster.cpp">
+    <ClCompile Include="ViewSchedule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +53,10 @@
     <ClInclude Include="ViewGrades.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AddGrades.h">
+    <ClInclude Include="PayFees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="viewRoster.h">
+    <ClInclude Include="ViewSchedule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
