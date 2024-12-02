@@ -125,12 +125,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddGrades.cpp" />
     <ClCompile Include="Dashboard.cpp" />
+    <ClCompile Include="EnrollmentForm.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Sign Up.cpp" />
+    <ClCompile Include="ViewGrades.cpp" />
+    <ClCompile Include="viewRoster.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddGrades.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Dashboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="EnrollmentForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Sign Up.h">
@@ -139,16 +149,34 @@
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ViewGrades.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="viewRoster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddGrades.resx">
+      <DependentUpon>AddGrades.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnrollmentForm.resx">
+      <DependentUpon>EnrollmentForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sign Up.resx">
       <DependentUpon>Sign Up.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewGrades.resx">
+      <DependentUpon>ViewGrades.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viewRoster.resx">
+      <DependentUpon>viewRoster.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

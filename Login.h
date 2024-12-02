@@ -45,7 +45,7 @@ namespace FinalProjectVPN {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ email_txt;
 	private: System::Windows::Forms::TextBox^ password_txt;
-	private: System::Windows::Forms::Button^ cancel_button;
+
 
 
 
@@ -70,7 +70,6 @@ namespace FinalProjectVPN {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->email_txt = (gcnew System::Windows::Forms::TextBox());
 			this->password_txt = (gcnew System::Windows::Forms::TextBox());
-			this->cancel_button = (gcnew System::Windows::Forms::Button());
 			this->login_button = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -110,21 +109,11 @@ namespace FinalProjectVPN {
 			this->password_txt->TabIndex = 3;
 			this->password_txt->TextChanged += gcnew System::EventHandler(this, &Login::textBox2_TextChanged);
 			// 
-			// cancel_button
-			// 
-			this->cancel_button->BackColor = System::Drawing::Color::LightCoral;
-			this->cancel_button->Location = System::Drawing::Point(227, 271);
-			this->cancel_button->Name = L"cancel_button";
-			this->cancel_button->Size = System::Drawing::Size(86, 31);
-			this->cancel_button->TabIndex = 4;
-			this->cancel_button->Text = L"Cancel";
-			this->cancel_button->UseVisualStyleBackColor = false;
-			// 
 			// login_button
 			// 
 			this->login_button->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->login_button->Location = System::Drawing::Point(562, 271);
+			this->login_button->Location = System::Drawing::Point(426, 294);
 			this->login_button->Name = L"login_button";
 			this->login_button->Size = System::Drawing::Size(86, 31);
 			this->login_button->TabIndex = 5;
@@ -132,18 +121,17 @@ namespace FinalProjectVPN {
 			this->login_button->UseVisualStyleBackColor = false;
 			this->login_button->Click += gcnew System::EventHandler(this, &Login::button2_Click);
 			// 
-			// MyForm2
+			// Login
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(835, 389);
 			this->Controls->Add(this->login_button);
-			this->Controls->Add(this->cancel_button);
 			this->Controls->Add(this->password_txt);
 			this->Controls->Add(this->email_txt);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->email);
-			this->Name = L"MyForm2";
+			this->Name = L"Login";
 			this->Text = L"Login";
 			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
