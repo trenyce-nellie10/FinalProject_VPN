@@ -36,9 +36,9 @@ namespace FinalProjectVPN {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ studentID;
-	private: System::Windows::Forms::Button^ GetSchedule;
+
+
+
 
 
 	protected:
@@ -57,71 +57,41 @@ namespace FinalProjectVPN {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->studentID = (gcnew System::Windows::Forms::TextBox());
-			this->GetSchedule = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(152, 25);
+			this->dataGridView1->Location = System::Drawing::Point(159, 142);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 62;
 			this->dataGridView1->RowTemplate->Height = 28;
 			this->dataGridView1->Size = System::Drawing::Size(451, 231);
 			this->dataGridView1->TabIndex = 0;
 			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(103, 301);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(83, 20);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"StudentID";
-			// 
-			// studentID
-			// 
-			this->studentID->Location = System::Drawing::Point(212, 298);
-			this->studentID->Name = L"studentID";
-			this->studentID->Size = System::Drawing::Size(284, 26);
-			this->studentID->TabIndex = 2;
-			// 
-			// GetSchedule
-			// 
-			this->GetSchedule->Location = System::Drawing::Point(294, 408);
-			this->GetSchedule->Name = L"GetSchedule";
-			this->GetSchedule->Size = System::Drawing::Size(147, 28);
-			this->GetSchedule->TabIndex = 3;
-			this->GetSchedule->Text = L"GetSchedule";
-			this->GetSchedule->UseVisualStyleBackColor = true;
-			this->GetSchedule->Click += gcnew System::EventHandler(this, &ViewSchedule::button1_Click);
-			// 
 			// ViewSchedule
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(752, 503);
-			this->Controls->Add(this->GetSchedule);
-			this->Controls->Add(this->studentID);
-			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"ViewSchedule";
 			this->Text = L"ViewSchedule";
 			this->Load += gcnew System::EventHandler(this, &ViewSchedule::ViewSchedule_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void ViewSchedule_Load(System::Object^ sender, System::EventArgs^ e) {
-		String^ connectionString = "Data Source=your_server_name;Initial Catalog=your_database_name;Integrated Security=True";
+		String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
 
-		// SQL query to retrieve the schedule data
-		String^ query = "SELECT * FROM Schedule WHERE StudentID = @StudentID";
+		// SQL query to retrieve the schedule data along with the corresponding courseName
+		String^ query = "SELECT Schedule.ScheduleID, Course.courseName, Schedule.StudentID, Schedule.DayOfTheWeek, Schedule.StartTime, Schedule.EndTime "
+			"FROM Schedule "
+			"INNER JOIN Course ON Schedule.CourseID = Course.CourseID "
+			"WHERE Schedule.StudentID = @StudentID";
 
 		// Create a connection to the database
 		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
@@ -142,6 +112,15 @@ namespace FinalProjectVPN {
 
 			// Bind the DataTable to the DataGridView
 			dataGridView1->DataSource = dataTable;
+
+			// Hide the ScheduleID column
+			dataGridView1->Columns["ScheduleID"]->Visible = false;
+
+			// Optionally, set custom column names for better readability
+			dataGridView1->Columns["courseName"]->HeaderText = "Course Name";
+			dataGridView1->Columns["DayOfTheWeek"]->HeaderText = "Day of the Week";
+			dataGridView1->Columns["StartTime"]->HeaderText = "Start Time";
+			dataGridView1->Columns["EndTime"]->HeaderText = "End Time";
 		}
 		catch (Exception^ ex)
 		{
@@ -153,9 +132,9 @@ namespace FinalProjectVPN {
 			// Close the connection
 			connection->Close();
 		}
+	}
 
 
-	}	
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 };

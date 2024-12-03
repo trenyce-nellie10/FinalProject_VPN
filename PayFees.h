@@ -40,15 +40,17 @@ namespace FinalProjectVPN {
 	protected:
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4; // Label for Amount
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ textBox2; // TextBox for Amount
 	private: System::Windows::Forms::ComboBox^ comboBox1;
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -60,8 +62,10 @@ namespace FinalProjectVPN {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label()); // Initialize label4
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox()); // Initialize textBox2
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
@@ -95,6 +99,15 @@ namespace FinalProjectVPN {
 			this->label3->Text = L"Fees Payment ";
 			this->label3->Click += gcnew System::EventHandler(this, &PayFees::label3_Click);
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(69, 180);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(68, 20);
+			this->label4->TabIndex = 6;
+			this->label4->Text = L"Amount";
+			// 
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(242, 402);
@@ -112,11 +125,18 @@ namespace FinalProjectVPN {
 			this->textBox1->Size = System::Drawing::Size(100, 26);
 			this->textBox1->TabIndex = 4;
 			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(240, 180);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(100, 26);
+			this->textBox2->TabIndex = 7;
+			// 
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				L" card", L"cash", L"momo"
+				L"card", L"cash", L"momo"
 			});
 			this->comboBox1->Location = System::Drawing::Point(240, 229);
 			this->comboBox1->Name = L"comboBox1";
@@ -128,6 +148,8 @@ namespace FinalProjectVPN {
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(724, 571);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
@@ -143,8 +165,9 @@ namespace FinalProjectVPN {
 #pragma endregion
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e){
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		int studentID = Convert::ToInt32(this->textBox1->Text);
+		double amount = Convert::ToDouble(this->textBox2->Text);
 		String^ paymentMethod = this->comboBox1->SelectedItem->ToString();
 		String^ paymentDate = DateTime::Now.ToString("yyyy-MM-dd");
 
@@ -152,7 +175,7 @@ namespace FinalProjectVPN {
 		String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
 
 		// SQL query to insert the payment details
-		String^ query = "INSERT INTO Payments (studentID, paymentMethod, paymentDate) VALUES (@StudentID, @PaymentMethod, @PaymentDate)";
+		String^ query = "INSERT INTO Payments (studentID, amount, paymentMethod, paymentDate) VALUES (@StudentID, @Amount, @PaymentMethod, @PaymentDate)";
 
 		// Create a connection to the database
 		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
@@ -160,6 +183,7 @@ namespace FinalProjectVPN {
 
 		// Add parameters to the SQL query
 		command->Parameters->AddWithValue("@StudentID", studentID);
+		command->Parameters->AddWithValue("@Amount", amount);
 		command->Parameters->AddWithValue("@PaymentMethod", paymentMethod);
 		command->Parameters->AddWithValue("@PaymentDate", paymentDate);
 
@@ -186,5 +210,6 @@ namespace FinalProjectVPN {
 		}
 
 	}
-};
+	};
 }
+
