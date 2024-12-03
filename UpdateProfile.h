@@ -8,19 +8,22 @@ namespace FinalProjectVPN {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for UpdateProfile
 	/// </summary>
 	public ref class UpdateProfile : public System::Windows::Forms::Form
 	{
+	private:
+		int userID; // Store the userID for database operations
+
 	public:
-		UpdateProfile(void)
+		UpdateProfile(int userID)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			this->userID = userID; // Initialize userID
+			LoadProfileData();
 		}
 
 	protected:
@@ -61,7 +64,7 @@ namespace FinalProjectVPN {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -188,6 +191,7 @@ namespace FinalProjectVPN {
 			this->pictureBox1->Location = System::Drawing::Point(32, 55);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(165, 210);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 12;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -197,8 +201,9 @@ namespace FinalProjectVPN {
 			this->update->Name = L"update";
 			this->update->Size = System::Drawing::Size(106, 28);
 			this->update->TabIndex = 13;
-			this->update->Text = L"update";
+			this->update->Text = L"Update";
 			this->update->UseVisualStyleBackColor = true;
+			this->update->Click += gcnew System::EventHandler(this, &UpdateProfile::update_Click);
 			// 
 			// UpdateProfile
 			// 
@@ -221,11 +226,89 @@ namespace FinalProjectVPN {
 			this->Controls->Add(this->label1);
 			this->Name = L"UpdateProfile";
 			this->Text = L"UpdateProfile";
+			this->Load += gcnew System::EventHandler(this, &UpdateProfile::UpdateProfile_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+	private: System::Void UpdateProfile_Load(System::Object^ sender, System::EventArgs^ e) {
+		LoadProfileData();
+	}
+
+	private: System::Void update_Click(System::Object^ sender, System::EventArgs^ e) {
+		UpdateProfileData();
+	}
+
+	private: void LoadProfileData() {
+		String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
+		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+		String^ query = "SELECT u.firstName, u.lastName, u.email, u.password, f.department, f.facultyID " +
+			"FROM users u " +
+			"JOIN faculty f ON u.userID = f.userID " +
+			"WHERE u.userID = @userID";
+
+		MySqlCommand^ command = gcnew MySqlCommand(query, connection);
+		command->Parameters->AddWithValue("@userID", userID);
+
+		try
+		{
+			connection->Open();
+			MySqlDataReader^ reader = command->ExecuteReader();
+			if (reader->Read())
+			{
+				firstName->Text = reader["firstName"]->ToString();
+				lastName->Text = reader["lastName"]->ToString();
+				email->Text = reader["email"]->ToString();
+				password->Text = reader["password"]->ToString();
+				department->Text = reader["department"]->ToString();
+				facultyID->Text = reader["facultyID"]->ToString();
+			}
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("Error loading profile data: " + ex->Message);
+		}
+		finally
+		{
+			connection->Close();
+		}
+	}
+
+	private: void UpdateProfileData() {
+		String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
+		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+		String^ query = "UPDATE users u " +
+			"JOIN faculty f ON u.userID = f.userID " +
+			"SET u.firstName = @firstName, u.lastName = @lastName, u.email = @Email, u.password = @Password, " +
+			"f.department = @Department, f.facultyID = @FacultyID " +
+			"WHERE u.userID = @userID";
+
+		MySqlCommand^ command = gcnew MySqlCommand(query, connection);
+		command->Parameters->AddWithValue("@firstName", firstName->Text);
+		command->Parameters->AddWithValue("@lastName", lastName->Text);
+		command->Parameters->AddWithValue("@Email", email->Text);
+		command->Parameters->AddWithValue("@Password", password->Text);
+		command->Parameters->AddWithValue("@Department", department->Text);
+		command->Parameters->AddWithValue("@FacultyID", facultyID->Text);
+		command->Parameters->AddWithValue("@userID", userID);
+
+		try
+		{
+			connection->Open();
+			command->ExecuteNonQuery();
+			MessageBox::Show("Profile updated successfully!");
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("Error updating profile: " + ex->Message);
+		}
+		finally
+		{
+			connection->Close();
+		}
+	}
 	};
 }
+

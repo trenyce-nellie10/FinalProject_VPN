@@ -24,6 +24,7 @@ namespace FinalProjectVPN {
             if (studentID != -1)
             {
                 this->studentID = studentID;
+                LoadCourses();
             }
             else
             {
@@ -81,11 +82,6 @@ namespace FinalProjectVPN {
             // CoursesComboBox
             // 
             this->CoursesComboBox->FormattingEnabled = true;
-            // Example course list, you can populate it from a database
-            this->CoursesComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-                L"Artificial Intelligence", L"Mathematics",
-                    L"Computer Science"
-            });
             this->CoursesComboBox->Location = System::Drawing::Point(413, 207);
             this->CoursesComboBox->Name = L"CoursesComboBox";
             this->CoursesComboBox->Size = System::Drawing::Size(121, 28);
@@ -244,6 +240,43 @@ namespace FinalProjectVPN {
                }
 
                return courseID; // Return the courseID (or -1 if not found)
+           }
+
+           // Function to load courses into the ComboBox
+           void LoadCourses()
+           {
+               // Database connection string
+               String^ connectionString = "Server = localhost; Database = university; Uid = root; Pwd = ''; ";
+
+               // SQL query to get all course names
+               String^ query = "SELECT courseName FROM course";
+
+               // Create a connection to the database
+               MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+               MySqlCommand^ command = gcnew MySqlCommand(query, connection);
+
+               try
+               {
+                   // Open the connection
+                   connection->Open();
+
+                   // Execute the query and retrieve the course names
+                   MySqlDataReader^ reader = command->ExecuteReader();
+                   while (reader->Read())
+                   {
+                       CoursesComboBox->Items->Add(reader["courseName"]->ToString());
+                   }
+               }
+               catch (Exception^ ex)
+               {
+                   // Show an error message
+                   MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+               }
+               finally
+               {
+                   // Close the connection
+                   connection->Close();
+               }
            }
     };
 }

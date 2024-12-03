@@ -9,7 +9,7 @@ using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
-using namespace System::Data::SqlClient; // Replace with MySqlClient if using MySQL
+using namespace MySql::Data::MySqlClient; // Use MySqlClient for MySQL
 using namespace System::Drawing;
 
 namespace FinalProjectVPN {
@@ -17,9 +17,11 @@ namespace FinalProjectVPN {
 	public ref class UpdateProfileStudents : public System::Windows::Forms::Form
 	{
 	public:
-		UpdateProfileStudents(void)
+		UpdateProfileStudents(int studentID)
 		{
 			InitializeComponent();
+			this->studentID = studentID;
+			LoadStudentData();
 		}
 
 	protected:
@@ -32,6 +34,7 @@ namespace FinalProjectVPN {
 		}
 
 	private:
+		int studentID;
 		System::Windows::Forms::Button^ button1;
 		System::Windows::Forms::Label^ label1;
 		System::Windows::Forms::TextBox^ textBox1;
@@ -41,6 +44,10 @@ namespace FinalProjectVPN {
 		System::Windows::Forms::Label^ label3;
 		System::Windows::Forms::TextBox^ textBox4;
 		System::Windows::Forms::Label^ label4;
+		System::Windows::Forms::TextBox^ textBox5;
+		System::Windows::Forms::Label^ label5;
+		System::Windows::Forms::TextBox^ textBox6;
+		System::Windows::Forms::Label^ label6;
 
 		System::ComponentModel::Container^ components;
 
@@ -56,11 +63,15 @@ namespace FinalProjectVPN {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(358, 276);
+			this->button1->Location = System::Drawing::Point(365, 399);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 34);
 			this->button1->TabIndex = 0;
@@ -73,7 +84,7 @@ namespace FinalProjectVPN {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(203, 53);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(82, 20);
+			this->label1->Size = System::Drawing::Size(86, 20);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"First Name";
 			// 
@@ -96,9 +107,9 @@ namespace FinalProjectVPN {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(211, 106);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(74, 20);
+			this->label2->Size = System::Drawing::Size(86, 20);
 			this->label2->TabIndex = 3;
-			this->label2->Text = L"Surname";
+			this->label2->Text = L"Last Name";
 			// 
 			// textBox3
 			// 
@@ -112,7 +123,7 @@ namespace FinalProjectVPN {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(234, 162);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(46, 20);
+			this->label3->Size = System::Drawing::Size(48, 20);
 			this->label3->TabIndex = 5;
 			this->label3->Text = L"Email";
 			// 
@@ -128,15 +139,53 @@ namespace FinalProjectVPN {
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(203, 221);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(77, 20);
+			this->label4->Size = System::Drawing::Size(78, 20);
 			this->label4->TabIndex = 7;
 			this->label4->Text = L"Password";
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(306, 274);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->ReadOnly = true;
+			this->textBox5->Size = System::Drawing::Size(196, 26);
+			this->textBox5->TabIndex = 10;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(234, 277);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(48, 20);
+			this->label5->TabIndex = 9;
+			this->label5->Text = L"Major";
+			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(306, 330);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->ReadOnly = true;
+			this->textBox6->Size = System::Drawing::Size(196, 26);
+			this->textBox6->TabIndex = 12;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(203, 333);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(87, 20);
+			this->label6->TabIndex = 11;
+			this->label6->Text = L"Student ID";
 			// 
 			// UpdateProfileStudents
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(793, 346);
+			this->ClientSize = System::Drawing::Size(839, 472);
+			this->Controls->Add(this->textBox6);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->textBox3);
@@ -154,30 +203,68 @@ namespace FinalProjectVPN {
 		}
 #pragma endregion
 	private:
-		System::String^ connectionString = "your_connection_string_here"; // Replace with your DB connection string
+		System::String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';"; // Replace with your DB connection string
+
+		void LoadStudentData()
+		{
+			try
+			{
+				// Establish database connection
+				MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+				connection->Open();
+
+				// SQL query for retrieving student info
+				String^ query = "SELECT u.FirstName, u.LastName, u.Email, u.Password, s.Major FROM users u JOIN student s ON u.UserID = s.UserID WHERE s.StudentID = @StudentID";
+
+				MySqlCommand^ command = gcnew MySqlCommand(query, connection);
+				command->Parameters->AddWithValue("@StudentID", studentID);
+
+				MySqlDataReader^ reader = command->ExecuteReader();
+				if (reader->Read())
+				{
+					textBox1->Text = reader["FirstName"]->ToString();
+					textBox2->Text = reader["LastName"]->ToString();
+					textBox3->Text = reader["Email"]->ToString();
+					textBox4->Text = reader["Password"]->ToString();
+					textBox5->Text = reader["Major"]->ToString();
+					textBox6->Text = studentID.ToString();
+				}
+				else
+				{
+					MessageBox::Show("No matching record found.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				}
+
+				connection->Close();
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
 
 		void button1_Click(System::Object^ sender, System::EventArgs^ e)
 		{
 			try
 			{
 				// Establish database connection
-				SqlConnection^ connection = gcnew SqlConnection(connectionString);
+				MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 				connection->Open();
 
 				// Retrieve form data
 				String^ firstName = textBox1->Text;
-				String^ surname = textBox2->Text;
+				String^ lastName = textBox2->Text;
 				String^ email = textBox3->Text;
 				String^ password = textBox4->Text;
 
 				// SQL query for updating student info
-				String^ query = "UPDATE student SET FirstName = @FirstName, Surname = @Surname, Email = @Email, Password = @Password WHERE Email = @Email";
+				String^ query = "UPDATE users u JOIN student s ON u.userID = s.userID SET u.FirstName = @FirstName, u.LastName = @LastName, u.Email = @Email, u.Password = @Password WHERE s.StudentID = @StudentID";
 
-				SqlCommand^ command = gcnew SqlCommand(query, connection);
+				MySqlCommand^ command = gcnew MySqlCommand(query, connection);
 				command->Parameters->AddWithValue("@FirstName", firstName);
-				command->Parameters->AddWithValue("@Surname", surname);
+				command->Parameters->AddWithValue("@LastName", lastName);
 				command->Parameters->AddWithValue("@Email", email);
 				command->Parameters->AddWithValue("@Password", password);
+				command->Parameters->AddWithValue("@StudentID", studentID);
 
 				int rowsAffected = command->ExecuteNonQuery();
 				if (rowsAffected > 0)
@@ -198,3 +285,4 @@ namespace FinalProjectVPN {
 		}
 	};
 }
+

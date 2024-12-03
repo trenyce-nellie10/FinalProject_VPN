@@ -88,7 +88,7 @@ namespace FinalProjectVPN {
 
             String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
             MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
-            String^ query = "SELECT courseID FROM course WHERE courseName = @department";
+            String^ query = "SELECT courseID, courseName FROM course WHERE courseName = @department";
 
             MySqlCommand^ command = gcnew MySqlCommand(query, connection);
             command->Parameters->AddWithValue("@department", department);
@@ -140,7 +140,7 @@ namespace FinalProjectVPN {
             MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
             String^ query = "SELECT DISTINCT s.studentID, u.firstName, u.lastName " +
                 "FROM enrollments e " +
-                "JOIN students s ON e.studentID = s.studentID " +
+                "JOIN student s ON e.studentID = s.studentID " +
                 "JOIN users u ON s.userID = u.userID " +
                 "WHERE e.courseID = @courseId";
 
@@ -222,13 +222,35 @@ namespace FinalProjectVPN {
             this->grade = gcnew System::Windows::Forms::TextBox();
             this->submit = gcnew System::Windows::Forms::Button();
 
+            // Set properties for the components
+            this->studentID->Location = System::Drawing::Point(50, 50);
+            this->studentID->Size = System::Drawing::Size(200, 30);
+
+            this->courseID->Location = System::Drawing::Point(50, 100);
+            this->courseID->Size = System::Drawing::Size(200, 30);
+
+            this->grade->Location = System::Drawing::Point(50, 150);
+            this->grade->Size = System::Drawing::Size(200, 30);
+
+            this->submit->Location = System::Drawing::Point(50, 200);
+            this->submit->Size = System::Drawing::Size(100, 30);
+            this->submit->Text = "Submit";
+
+            // Add components to the form
+            this->Controls->Add(this->studentID);
+            this->Controls->Add(this->courseID);
+            this->Controls->Add(this->grade);
+            this->Controls->Add(this->submit);
+
             // Set up event handlers
             this->courseID->SelectedIndexChanged +=
                 gcnew System::EventHandler(this, &AddGrades::courseID_SelectedIndexChanged);
             this->submit->Click +=
                 gcnew System::EventHandler(this, &AddGrades::submit_Click);
 
-            // Add additional UI setup as needed
+            // Set form properties
+            this->Text = "Add Grades";
+            this->Size = System::Drawing::Size(300, 300);
         }
 
         // Event handler for course selection
@@ -238,3 +260,4 @@ namespace FinalProjectVPN {
         }
     };
 }
+
