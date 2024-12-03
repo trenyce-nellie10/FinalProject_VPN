@@ -128,9 +128,16 @@
     <ClCompile Include="AddGrades.cpp" />
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="EnrollmentForm.cpp" />
+    <ClCompile Include="GenerateReports.cpp" />
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="ManageCourses.cpp" />
+    <ClCompile Include="ManageFaculty.cpp" />
+    <ClCompile Include="ManageFinancials.cpp" />
+    <ClCompile Include="ManageStudents.cpp" />
     <ClCompile Include="PayFees.cpp" />
+    <ClCompile Include="RosterView.cpp" />
     <ClCompile Include="Sign Up.cpp" />
+    <ClCompile Include="UpdateProfile.cpp" />
     <ClCompile Include="ViewGrades.cpp" />
     <ClCompile Include="ViewSchedule.cpp" />
   </ItemGroup>
@@ -144,13 +151,34 @@
     <ClInclude Include="EnrollmentForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="GenerateReports.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ManageCourses.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ManageFaculty.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ManageFinancials.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ManageStudents.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PayFees.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="RosterView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Sign Up.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Login.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UpdateProfile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ViewGrades.h">
@@ -173,11 +201,26 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageFaculty.resx">
+      <DependentUpon>ManageFaculty.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageFinancials.resx">
+      <DependentUpon>ManageFinancials.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageStudents.resx">
+      <DependentUpon>ManageStudents.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PayFees.resx">
       <DependentUpon>PayFees.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RosterView.resx">
+      <DependentUpon>RosterView.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sign Up.resx">
       <DependentUpon>Sign Up.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateProfile.resx">
+      <DependentUpon>UpdateProfile.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewGrades.resx">
       <DependentUpon>ViewGrades.h</DependentUpon>
