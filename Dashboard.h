@@ -122,6 +122,7 @@ namespace FinalProjectVPN {
 	private: System::Windows::Forms::ToolStripMenuItem^ manageCoursesToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ generateReportsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ manageFinancialsToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ manageProfileToolStripMenuItem; // New menu item for managing profile
 	private:
 		MySqlConnection^ sqlConn;
 		MySqlCommand^ sqlCmd;
@@ -168,6 +169,7 @@ namespace FinalProjectVPN {
 			this->viewGradesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->payFeesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->viewScheduleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->manageProfileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem()); // New menu item for managing profile
 			this->toolStripMenuItem4 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->manageCoursesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->enterGradesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -199,9 +201,9 @@ namespace FinalProjectVPN {
 			// 
 			// toolStripMenuItem3
 			// 
-			this->toolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->toolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->enrollToolStripMenuItem,
-					this->viewGradesToolStripMenuItem, this->payFeesToolStripMenuItem, this->viewScheduleToolStripMenuItem
+					this->viewGradesToolStripMenuItem, this->payFeesToolStripMenuItem, this->viewScheduleToolStripMenuItem, this->manageProfileToolStripMenuItem
 			});
 			this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
 			this->toolStripMenuItem3->Size = System::Drawing::Size(89, 29);
@@ -236,6 +238,13 @@ namespace FinalProjectVPN {
 			this->viewScheduleToolStripMenuItem->Text = L"View Schedule";
 			this->viewScheduleToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewScheduleToolStripMenuItem_Click);
 			// 
+			// manageProfileToolStripMenuItem
+			// 
+			this->manageProfileToolStripMenuItem->Name = L"manageProfileToolStripMenuItem";
+			this->manageProfileToolStripMenuItem->Size = System::Drawing::Size(227, 34);
+			this->manageProfileToolStripMenuItem->Text = L"Manage Profile";
+			this->manageProfileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageProfileToolStripMenuItem_Click);
+			// 
 			// toolStripMenuItem4
 			// 
 			this->toolStripMenuItem4->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
@@ -250,14 +259,14 @@ namespace FinalProjectVPN {
 			// manageCoursesToolStripMenuItem
 			// 
 			this->manageCoursesToolStripMenuItem->Name = L"manageCoursesToolStripMenuItem";
-			this->manageCoursesToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->manageCoursesToolStripMenuItem->Size = System::Drawing::Size(251, 34);
 			this->manageCoursesToolStripMenuItem->Text = L"Manage Courses";
 			this->manageCoursesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageCoursesToolStripMenuItem_Click);
 			// 
 			// enterGradesToolStripMenuItem
 			// 
 			this->enterGradesToolStripMenuItem->Name = L"enterGradesToolStripMenuItem";
-			this->enterGradesToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->enterGradesToolStripMenuItem->Size = System::Drawing::Size(251, 34);
 			this->enterGradesToolStripMenuItem->Text = L"Enter Grades";
 			this->enterGradesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::enterGradesToolStripMenuItem_Click);
 			// 
@@ -265,14 +274,14 @@ namespace FinalProjectVPN {
 			// 
 			this->viewClassRosterToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->toolStripComboBox1 });
 			this->viewClassRosterToolStripMenuItem->Name = L"viewClassRosterToolStripMenuItem";
-			this->viewClassRosterToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->viewClassRosterToolStripMenuItem->Size = System::Drawing::Size(251, 34);
 			this->viewClassRosterToolStripMenuItem->Text = L"View Class Roster";
 			this->viewClassRosterToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewClassRosterToolStripMenuItem_Click);
 			// 
 			// updateProfileToolStripMenuItem
 			// 
 			this->updateProfileToolStripMenuItem->Name = L"updateProfileToolStripMenuItem";
-			this->updateProfileToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->updateProfileToolStripMenuItem->Size = System::Drawing::Size(251, 34);
 			this->updateProfileToolStripMenuItem->Text = L"Update Profile ";
 			this->updateProfileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::updateProfileToolStripMenuItem_Click);
 			// 
@@ -391,49 +400,56 @@ namespace FinalProjectVPN {
 		view->ShowDialog();
 		this->Show();
 	}
-private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void manageCoursesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void enterGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	AddGrades^ view = gcnew AddGrades(userID);  // Pass userID
-	view->ShowDialog();
-	this->Show();
-}
-private: System::Void viewClassRosterToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	RosterView^ view = gcnew RosterView();
-	view->ShowDialog();
-	this->Show();
-}
-private: System::Void updateProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	UpdateProfile^ view = gcnew UpdateProfile();
-	view->ShowDialog();
-	this->Show();
-}
-private: System::Void manageCoursesToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	ManageCourses^ manage = gcnew ManageCourses();
-	manage->ShowDialog();
-	this->Show();
+	private: System::Void manageProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		UpdateProfile^ view = gcnew UpdateProfile();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void manageCoursesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void enterGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		AddGrades^ view = gcnew AddGrades();
+		view->ShowDialog();
+		this->Show();
 
-}
-private: System::Void manageStudentsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	ManageStudents^ manage = gcnew ManageStudents();
-	manage->ShowDialog();
-	this->Show();
-}
-private: System::Void generateReportsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	GenerateReports^ view = gcnew GenerateReports();
-	view->ShowDialog();
-	this->Show();
-}
+	}
+	private: System::Void viewClassRosterToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		RosterView^ view = gcnew RosterView();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void updateProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		UpdateProfile^ view = gcnew UpdateProfile();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void manageCoursesToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ManageCourses^ manage = gcnew ManageCourses();
+		manage->ShowDialog();
+		this->Show();
+
+	}
+	private: System::Void manageStudentsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ManageStudents^ manage = gcnew ManageStudents();
+		manage->ShowDialog();
+		this->Show();
+	}
+	private: System::Void generateReportsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		GenerateReports^ view = gcnew GenerateReports();
+		view->ShowDialog();
+		this->Show();
+	}
 };
 
 }
