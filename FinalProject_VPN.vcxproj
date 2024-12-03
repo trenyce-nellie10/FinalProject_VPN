@@ -138,6 +138,7 @@
     <ClCompile Include="RosterView.cpp" />
     <ClCompile Include="Sign Up.cpp" />
     <ClCompile Include="UpdateProfile.cpp" />
+    <ClCompile Include="UpdateProfileStudents.cpp" />
     <ClCompile Include="ViewGrades.cpp" />
     <ClCompile Include="ViewSchedule.cpp" />
   </ItemGroup>
@@ -181,6 +182,9 @@
     <ClInclude Include="UpdateProfile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="UpdateProfileStudents.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ViewGrades.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -221,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateProfile.resx">
       <DependentUpon>UpdateProfile.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateProfileStudents.resx">
+      <DependentUpon>UpdateProfileStudents.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewGrades.resx">
       <DependentUpon>ViewGrades.h</DependentUpon>

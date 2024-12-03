@@ -6,6 +6,7 @@
 #include "AddGrades.h"
 #include "RosterView.h"
 #include "UpdateProfile.h"
+#include "UpdateProfileStudents.h"
 #include "ManageStudents.h"
 #include "ManageFaculty.h"
 #include "ManageCourses.h"
@@ -29,7 +30,8 @@ namespace FinalProjectVPN {
 	{
 	private:
 		int userID; // Declare userID as a member variable
-		int userRole; // Declare userRole as a member variable
+	private: System::Windows::Forms::ToolStripComboBox^ toolStripComboBox1;
+		   int userRole; // Declare userRole as a member variable
 
 		void ConnectToDatabase()
 		{
@@ -179,6 +181,7 @@ namespace FinalProjectVPN {
 			this->manageCoursesToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->generateReportsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->manageFinancialsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripComboBox1 = (gcnew System::Windows::Forms::ToolStripComboBox());
 			this->menuStrip3->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -210,28 +213,28 @@ namespace FinalProjectVPN {
 			// enrollToolStripMenuItem
 			// 
 			this->enrollToolStripMenuItem->Name = L"enrollToolStripMenuItem";
-			this->enrollToolStripMenuItem->Size = System::Drawing::Size(227, 34);
+			this->enrollToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->enrollToolStripMenuItem->Text = L"Enroll";
 			this->enrollToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::enrollToolStripMenuItem_Click);
 			// 
 			// viewGradesToolStripMenuItem
 			// 
 			this->viewGradesToolStripMenuItem->Name = L"viewGradesToolStripMenuItem";
-			this->viewGradesToolStripMenuItem->Size = System::Drawing::Size(227, 34);
+			this->viewGradesToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->viewGradesToolStripMenuItem->Text = L"View Grades";
 			this->viewGradesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewGradesToolStripMenuItem_Click);
 			// 
 			// payFeesToolStripMenuItem
 			// 
 			this->payFeesToolStripMenuItem->Name = L"payFeesToolStripMenuItem";
-			this->payFeesToolStripMenuItem->Size = System::Drawing::Size(227, 34);
+			this->payFeesToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->payFeesToolStripMenuItem->Text = L"Pay Fees";
 			this->payFeesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::payFeesToolStripMenuItem_Click);
 			// 
 			// viewScheduleToolStripMenuItem
 			// 
 			this->viewScheduleToolStripMenuItem->Name = L"viewScheduleToolStripMenuItem";
-			this->viewScheduleToolStripMenuItem->Size = System::Drawing::Size(227, 34);
+			this->viewScheduleToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->viewScheduleToolStripMenuItem->Text = L"View Schedule";
 			this->viewScheduleToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewScheduleToolStripMenuItem_Click);
 			// 
@@ -269,6 +272,7 @@ namespace FinalProjectVPN {
 			// 
 			// viewClassRosterToolStripMenuItem
 			// 
+			this->viewClassRosterToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->toolStripComboBox1 });
 			this->viewClassRosterToolStripMenuItem->Name = L"viewClassRosterToolStripMenuItem";
 			this->viewClassRosterToolStripMenuItem->Size = System::Drawing::Size(251, 34);
 			this->viewClassRosterToolStripMenuItem->Text = L"View Class Roster";
@@ -295,37 +299,42 @@ namespace FinalProjectVPN {
 			// manageStudentsToolStripMenuItem
 			// 
 			this->manageStudentsToolStripMenuItem->Name = L"manageStudentsToolStripMenuItem";
-			this->manageStudentsToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->manageStudentsToolStripMenuItem->Size = System::Drawing::Size(258, 34);
 			this->manageStudentsToolStripMenuItem->Text = L"Manage Students ";
 			this->manageStudentsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageStudentsToolStripMenuItem_Click);
 			// 
 			// manageCoursesToolStripMenuItem1
 			// 
 			this->manageCoursesToolStripMenuItem1->Name = L"manageCoursesToolStripMenuItem1";
-			this->manageCoursesToolStripMenuItem1->Size = System::Drawing::Size(270, 34);
+			this->manageCoursesToolStripMenuItem1->Size = System::Drawing::Size(258, 34);
 			this->manageCoursesToolStripMenuItem1->Text = L"Manage Faculty ";
 			this->manageCoursesToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Dashboard::manageCoursesToolStripMenuItem1_Click);
 			// 
 			// manageCoursesToolStripMenuItem2
 			// 
 			this->manageCoursesToolStripMenuItem2->Name = L"manageCoursesToolStripMenuItem2";
-			this->manageCoursesToolStripMenuItem2->Size = System::Drawing::Size(270, 34);
+			this->manageCoursesToolStripMenuItem2->Size = System::Drawing::Size(258, 34);
 			this->manageCoursesToolStripMenuItem2->Text = L"Manage Courses ";
 			this->manageCoursesToolStripMenuItem2->Click += gcnew System::EventHandler(this, &Dashboard::manageCoursesToolStripMenuItem2_Click);
 			// 
 			// generateReportsToolStripMenuItem
 			// 
 			this->generateReportsToolStripMenuItem->Name = L"generateReportsToolStripMenuItem";
-			this->generateReportsToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->generateReportsToolStripMenuItem->Size = System::Drawing::Size(258, 34);
 			this->generateReportsToolStripMenuItem->Text = L"Generate Reports";
 			this->generateReportsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::generateReportsToolStripMenuItem_Click);
 			// 
 			// manageFinancialsToolStripMenuItem
 			// 
 			this->manageFinancialsToolStripMenuItem->Name = L"manageFinancialsToolStripMenuItem";
-			this->manageFinancialsToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->manageFinancialsToolStripMenuItem->Size = System::Drawing::Size(258, 34);
 			this->manageFinancialsToolStripMenuItem->Text = L"Manage Financials";
 			this->manageFinancialsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageFinancialsToolStripMenuItem_Click);
+			// 
+			// toolStripComboBox1
+			// 
+			this->toolStripComboBox1->Name = L"toolStripComboBox1";
+			this->toolStripComboBox1->Size = System::Drawing::Size(121, 33);
 			// 
 			// Dashboard
 			// 
@@ -393,7 +402,7 @@ namespace FinalProjectVPN {
 	}
 	private: System::Void manageProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
-		UpdateProfile^ view = gcnew UpdateProfile();
+		UpdateProfileStudents^ view = gcnew UpdateProfileStudents();
 		view->ShowDialog();
 		this->Show();
 	}
@@ -405,7 +414,7 @@ namespace FinalProjectVPN {
 	}
 	private: System::Void enterGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
-		AddGrades^ view = gcnew AddGrades();
+		AddGrades^ view = gcnew AddGrades(userRole);
 		view->ShowDialog();
 		this->Show();
 

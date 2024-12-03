@@ -137,7 +137,6 @@ namespace FinalProjectVPN {
 			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 	private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
