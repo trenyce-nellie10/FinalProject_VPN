@@ -8,6 +8,8 @@ namespace FinalProjectVPN {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
+
 
 	/// <summary>
 	/// Summary for PayFees
@@ -113,6 +115,9 @@ namespace FinalProjectVPN {
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L" card", L"cash", L"momo"
+			});
 			this->comboBox1->Location = System::Drawing::Point(240, 229);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(121, 28);
@@ -138,7 +143,48 @@ namespace FinalProjectVPN {
 #pragma endregion
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e){
+		int studentID = Convert::ToInt32(this->textBox1->Text);
+		String^ paymentMethod = this->comboBox1->SelectedItem->ToString();
+		String^ paymentDate = DateTime::Now.ToString("yyyy-MM-dd");
+
+		// Database connection string
+		String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
+
+		// SQL query to insert the payment details
+		String^ query = "INSERT INTO Payments (studentID, paymentMethod, paymentDate) VALUES (@StudentID, @PaymentMethod, @PaymentDate)";
+
+		// Create a connection to the database
+		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+		MySqlCommand^ command = gcnew MySqlCommand(query, connection);
+
+		// Add parameters to the SQL query
+		command->Parameters->AddWithValue("@StudentID", studentID);
+		command->Parameters->AddWithValue("@PaymentMethod", paymentMethod);
+		command->Parameters->AddWithValue("@PaymentDate", paymentDate);
+
+		try
+		{
+			// Open the connection
+			connection->Open();
+
+			// Execute the query
+			command->ExecuteNonQuery();
+
+			// Show a success message
+			MessageBox::Show("Payment Successful", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+		catch (Exception^ ex)
+		{
+			// Show an error message
+			MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		finally
+		{
+			// Close the connection
+			connection->Close();
+		}
+
 	}
 };
 }
