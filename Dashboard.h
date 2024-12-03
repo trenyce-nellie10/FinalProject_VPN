@@ -3,6 +3,7 @@
 #include "ViewGrades.h"
 #include "PayFees.h"
 #include "ViewSchedule.h"
+#include "ManageCourseMaterials.h"
 #include "AddGrades.h"
 #include "RosterView.h"
 #include "UpdateProfile.h"
@@ -257,10 +258,10 @@ namespace FinalProjectVPN {
 			// 
 			// manageCoursesToolStripMenuItem
 			// 
-			this->manageCoursesToolStripMenuItem->Name = L"manageCoursesToolStripMenuItem";
+			this->manageCoursesToolStripMenuItem->Name = L"manageCourseMaterialsToolStripMenuItem";
 			this->manageCoursesToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->manageCoursesToolStripMenuItem->Text = L"Manage Courses";
-			this->manageCoursesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageCoursesToolStripMenuItem_Click);
+			this->manageCoursesToolStripMenuItem->Text = L"Manage Course Materials";
+			this->manageCoursesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageCourseMaterialsToolStripMenuItem_Click);
 			// 
 			// enterGradesToolStripMenuItem
 			// 
@@ -409,7 +410,11 @@ namespace FinalProjectVPN {
 	}
 	private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void manageCoursesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void manageCourseMaterialsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ManageCourseMaterials^ manage = gcnew ManageCourseMaterials();
+		manage->ShowDialog();
+		this->Show();
 	}
 	private: System::Void enterGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();

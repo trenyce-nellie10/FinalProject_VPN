@@ -130,6 +130,7 @@
     <ClCompile Include="EnrollmentForm.cpp" />
     <ClCompile Include="GenerateReports.cpp" />
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="ManageCourseMaterials.cpp" />
     <ClCompile Include="ManageCourses.cpp" />
     <ClCompile Include="ManageFaculty.cpp" />
     <ClCompile Include="ManageFinancials.cpp" />
@@ -152,6 +153,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="GenerateReports.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ManageCourseMaterials.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ManageCourses.h">
@@ -200,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageCourseMaterials.resx">
+      <DependentUpon>ManageCourseMaterials.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageFaculty.resx">
       <DependentUpon>ManageFaculty.h</DependentUpon>
