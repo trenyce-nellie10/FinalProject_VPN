@@ -332,7 +332,7 @@ namespace FinalProjectVPN {
 			// 
 			this->manageFinancialsToolStripMenuItem->Name = L"manageFinancialsToolStripMenuItem";
 			this->manageFinancialsToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->manageFinancialsToolStripMenuItem->Text = L"  ";
+			this->manageFinancialsToolStripMenuItem->Text = L"Manage Financials";
 			this->manageFinancialsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageFinancialsToolStripMenuItem_Click);
 			// 
 			// Dashboard
