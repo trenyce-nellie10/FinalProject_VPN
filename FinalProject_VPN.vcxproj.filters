@@ -16,6 +16,7 @@
     <ClCompile Include="UpdateProfile.cpp" />
     <ClCompile Include="ViewGrades.cpp" />
     <ClCompile Include="ViewSchedule.cpp" />
+    <ClCompile Include="ManageCourseMaterials.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddGrades.h" />
@@ -33,5 +34,6 @@
     <ClInclude Include="UpdateProfile.h" />
     <ClInclude Include="ViewGrades.h" />
     <ClInclude Include="ViewSchedule.h" />
+    <ClInclude Include="ManageCourseMaterials.h" />
   </ItemGroup>
 </Project>
