@@ -12,7 +12,6 @@
 #include "GenerateReports.h"
 #include "ManageFinancials.h"
 
-
 namespace FinalProjectVPN {
 
 	using namespace System;
@@ -413,7 +412,7 @@ namespace FinalProjectVPN {
 	}
 	private: System::Void viewClassRosterToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
-		RosterView^ view = gcnew RosterView();
+		RosterView^ view = gcnew RosterView(userID); // Pass userID as facultyUserID
 		view->ShowDialog();
 		this->Show();
 	}
@@ -446,3 +445,4 @@ namespace FinalProjectVPN {
 
 }
 
+		

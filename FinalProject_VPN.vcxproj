@@ -138,7 +138,6 @@
     <ClCompile Include="RosterView.cpp" />
     <ClCompile Include="Sign Up.cpp" />
     <ClCompile Include="UpdateProfile.cpp" />
-    <ClCompile Include="UpdateProfile1.cpp" />
     <ClCompile Include="ViewGrades.cpp" />
     <ClCompile Include="ViewSchedule.cpp" />
   </ItemGroup>
@@ -180,9 +179,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UpdateProfile.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="UpdateProfile1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ViewGrades.h">

@@ -8,25 +8,19 @@ namespace FinalProjectVPN {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
-	/// <summary>
-	/// Summary for RosterView
-	/// </summary>
 	public ref class RosterView : public System::Windows::Forms::Form
 	{
 	public:
-		RosterView(void)
+		RosterView(int facultyUserID)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			this->facultyUserID = facultyUserID;
+			LoadRoster();
 		}
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		~RosterView()
 		{
 			if (components)
@@ -37,25 +31,20 @@ namespace FinalProjectVPN {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ courseID;
 	private: System::Windows::Forms::Button^ getRoster;
-	protected:
-
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: int facultyUserID;
 
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->courseID = (gcnew System::Windows::Forms::TextBox());
 			this->getRoster = (gcnew System::Windows::Forms::Button());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -82,21 +71,90 @@ namespace FinalProjectVPN {
 			this->getRoster->TabIndex = 2;
 			this->getRoster->Text = L"Get Roster";
 			this->getRoster->UseVisualStyleBackColor = true;
+			this->getRoster->Click += gcnew System::EventHandler(this, &RosterView::getRoster_Click);
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(12, 12);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersWidth = 62;
+			this->dataGridView1->RowTemplate->Height = 28;
+			this->dataGridView1->Size = System::Drawing::Size(776, 300);
+			this->dataGridView1->TabIndex = 3;
 			// 
 			// RosterView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(735, 325);
+			this->ClientSize = System::Drawing::Size(800, 450);
+			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->getRoster);
 			this->Controls->Add(this->courseID);
 			this->Controls->Add(this->label1);
 			this->Name = L"RosterView";
 			this->Text = L"RosterView";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+	private: System::Void getRoster_Click(System::Object^ sender, System::EventArgs^ e) {
+		LoadRoster();
+	}
+
+	private: void LoadRoster() {
+		// Database connection string
+		String^ connectionString = "Server=localhost;Database=university;Uid=root;Pwd='';";
+
+		// SQL query to get the department of the faculty member
+		String^ query = "SELECT department FROM faculty WHERE userID = @FacultyUserID";
+
+		// Create a connection to the database
+		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+		MySqlCommand^ command = gcnew MySqlCommand(query, connection);
+		command->Parameters->AddWithValue("@FacultyUserID", facultyUserID);
+
+		try
+		{
+			connection->Open();
+			String^ department = (String^)command->ExecuteScalar();
+
+			// SQL query to get the courseID for the department
+			query = "SELECT courseID FROM course WHERE courseName = @Department";
+			command = gcnew MySqlCommand(query, connection);
+			command->Parameters->AddWithValue("@Department", department);
+			int courseID = Convert::ToInt32(command->ExecuteScalar());
+
+			// SQL query to get the students enrolled in the course
+			query = "SELECT student.studentID, users.firstName, users.lastName " +
+				"FROM enrollments " +
+				"INNER JOIN student ON enrollments.studentID = student.studentID " +
+				"INNER JOIN users ON student.userID = users.userID " +
+				"WHERE enrollments.courseID = @CourseID";
+			command = gcnew MySqlCommand(query, connection);
+			command->Parameters->AddWithValue("@CourseID", courseID);
+
+			// Execute the query and load the data into a DataTable
+			MySqlDataAdapter^ adapter = gcnew MySqlDataAdapter(command);
+			DataTable^ dataTable = gcnew DataTable();
+			adapter->Fill(dataTable);
+
+			// Bind the DataTable to the DataGridView
+			dataGridView1->DataSource = dataTable;
+		}
+		catch (Exception^ ex)
+		{
+			// Show an error message
+			MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		finally
+		{
+			// Close the connection
+			connection->Close();
+		}
+	}
 	};
 }
+
