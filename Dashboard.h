@@ -121,6 +121,7 @@ namespace FinalProjectVPN {
 	private: System::Windows::Forms::ToolStripMenuItem^ manageCoursesToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ generateReportsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ manageFinancialsToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ manageProfileToolStripMenuItem; // New menu item for managing profile
 	private:
 		MySqlConnection^ sqlConn;
 		MySqlCommand^ sqlCmd;
@@ -167,6 +168,7 @@ namespace FinalProjectVPN {
 			this->viewGradesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->payFeesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->viewScheduleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->manageProfileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem()); // New menu item for managing profile
 			this->toolStripMenuItem4 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->manageCoursesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->enterGradesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -197,9 +199,9 @@ namespace FinalProjectVPN {
 			// 
 			// toolStripMenuItem3
 			// 
-			this->toolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->toolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->enrollToolStripMenuItem,
-					this->viewGradesToolStripMenuItem, this->payFeesToolStripMenuItem, this->viewScheduleToolStripMenuItem
+					this->viewGradesToolStripMenuItem, this->payFeesToolStripMenuItem, this->viewScheduleToolStripMenuItem, this->manageProfileToolStripMenuItem
 			});
 			this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
 			this->toolStripMenuItem3->Size = System::Drawing::Size(89, 29);
@@ -233,6 +235,13 @@ namespace FinalProjectVPN {
 			this->viewScheduleToolStripMenuItem->Size = System::Drawing::Size(227, 34);
 			this->viewScheduleToolStripMenuItem->Text = L"View Schedule";
 			this->viewScheduleToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewScheduleToolStripMenuItem_Click);
+			// 
+			// manageProfileToolStripMenuItem
+			// 
+			this->manageProfileToolStripMenuItem->Name = L"manageProfileToolStripMenuItem";
+			this->manageProfileToolStripMenuItem->Size = System::Drawing::Size(227, 34);
+			this->manageProfileToolStripMenuItem->Text = L"Manage Profile";
+			this->manageProfileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::manageProfileToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem4
 			// 
@@ -383,50 +392,56 @@ namespace FinalProjectVPN {
 		view->ShowDialog();
 		this->Show();
 	}
-private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void manageCoursesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void enterGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	AddGrades^ view = gcnew AddGrades();
-	view->ShowDialog();
-	this->Show();
+	private: System::Void manageProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		UpdateProfile^ view = gcnew UpdateProfile();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void manageCoursesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void enterGradesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		AddGrades^ view = gcnew AddGrades();
+		view->ShowDialog();
+		this->Show();
 
-}
-private: System::Void viewClassRosterToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	RosterView^ view = gcnew RosterView();
-	view->ShowDialog();
-	this->Show();
-}
-private: System::Void updateProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	UpdateProfile^ view = gcnew UpdateProfile();
-	view->ShowDialog();
-	this->Show();
-}
-private: System::Void manageCoursesToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	ManageCourses^ manage = gcnew ManageCourses();
-	manage->ShowDialog();
-	this->Show();
+	}
+	private: System::Void viewClassRosterToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		RosterView^ view = gcnew RosterView();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void updateProfileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		UpdateProfile^ view = gcnew UpdateProfile();
+		view->ShowDialog();
+		this->Show();
+	}
+	private: System::Void manageCoursesToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ManageCourses^ manage = gcnew ManageCourses();
+		manage->ShowDialog();
+		this->Show();
 
-}
-private: System::Void manageStudentsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	ManageStudents^ manage = gcnew ManageStudents();
-	manage->ShowDialog();
-	this->Show();
-}
-private: System::Void generateReportsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	GenerateReports^ view = gcnew GenerateReports();
-	view->ShowDialog();
-	this->Show();
-}
+	}
+	private: System::Void manageStudentsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ManageStudents^ manage = gcnew ManageStudents();
+		manage->ShowDialog();
+		this->Show();
+	}
+	private: System::Void generateReportsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		GenerateReports^ view = gcnew GenerateReports();
+		view->ShowDialog();
+		this->Show();
+	}
 };
 
 }
