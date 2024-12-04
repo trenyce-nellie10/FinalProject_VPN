@@ -146,15 +146,15 @@ namespace FinalProjectVPN {
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ connString = "Server=localhost;Database=university;Uid=root;Pwd="";";
+		String^ connString = "Server=localhost;Database=university;Uid=root;Pwd='';";
 		MySqlConnection^ conn = gcnew MySqlConnection(connString);
 		try {
 			conn->Open();
 			String^ email = email_txt->Text->Trim();
 			String^ password = password_txt->Text->Trim();
 
-			// Query to validate login and get the role
-			String^ query = "SELECT roleID FROM users WHERE email=@Email AND password=@Password";
+			// Query to validate login and get the userID and role
+			String^ query = "SELECT userID, roleID FROM users WHERE email=@Email AND password=@Password";
 			MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
 
 			// Add parameters
@@ -165,12 +165,13 @@ namespace FinalProjectVPN {
 			MySqlDataReader^ reader = cmd->ExecuteReader();
 
 			if (reader->Read()) {
-				// Fetch the role
-				int roleID = (int)reader["roleID"];
+				// Fetch the userID and role
+				int userID = Convert::ToInt32(reader["userID"]);
+				int roleID = Convert::ToInt32(reader["roleID"]);
 
 				// Hide current form and show the dashboard
 				this->Hide();
-				Dashboard^ dashboard = gcnew Dashboard(roleID);
+				Dashboard^ dashboard = gcnew Dashboard(userID);
 				dashboard->ShowDialog();
 				this->Show();
 			}
@@ -194,6 +195,7 @@ namespace FinalProjectVPN {
 			conn->Close();
 		}
 	}
+
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
 	};
 }
